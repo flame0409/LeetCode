@@ -8,6 +8,7 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
+<<<<<<< HEAD
 				<Option working_dir="D:/I_love_study!!!/fight/Project/LeetCode/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
@@ -20,6 +21,20 @@
 			<Target title="LeetCode">
 				<Option output="D:/I_love_study!!!/fight/Project/LeetCode/cmake-build-debug/LeetCode.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="D:/I_love_study!!!/fight/Project/LeetCode/cmake-build-debug"/>
+=======
+				<Option working_dir="E:/Program/LeetCode/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LeetCode">
+				<Option output="E:/Program/LeetCode/cmake-build-debug/LeetCode.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Program/LeetCode/cmake-build-debug"/>
+>>>>>>> c92e1869749b119ea81013f0b5c4b42bb6d4e426
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -33,6 +48,7 @@
 					<Add directory="E:/TDM-GCC/bin/../lib/gcc/x86_64-w64-mingw32/9.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
+<<<<<<< HEAD
 					<Build command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;D:/I_love_study!!!/fight/Project/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 LeetCode"/>
 					<CompileFile command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;D:/I_love_study!!!/fight/Project/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;D:/I_love_study!!!/fight/Project/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -42,6 +58,17 @@
 			<Target title="LeetCode/fast">
 				<Option output="D:/I_love_study!!!/fight/Project/LeetCode/cmake-build-debug/LeetCode.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="D:/I_love_study!!!/fight/Project/LeetCode/cmake-build-debug"/>
+=======
+					<Build command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 LeetCode"/>
+					<CompileFile command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LeetCode/fast">
+				<Option output="E:/Program/LeetCode/cmake-build-debug/LeetCode.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Program/LeetCode/cmake-build-debug"/>
+>>>>>>> c92e1869749b119ea81013f0b5c4b42bb6d4e426
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -55,6 +82,7 @@
 					<Add directory="E:/TDM-GCC/bin/../lib/gcc/x86_64-w64-mingw32/9.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
+<<<<<<< HEAD
 					<Build command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;D:/I_love_study!!!/fight/Project/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 LeetCode/fast"/>
 					<CompileFile command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;D:/I_love_study!!!/fight/Project/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;D:/I_love_study!!!/fight/Project/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -86,6 +114,39 @@
 			<Option target="LeetCode"/>
 		</Unit>
 		<Unit filename="D:/I_love_study!!!/fight/Project/LeetCode/CMakeLists.txt">
+=======
+					<Build command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 LeetCode/fast"/>
+					<CompileFile command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="E:/Program/LeetCode/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="E:/Program/LeetCode/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/TDM-GCC/bin/mingw32-make.exe -f &quot;E:/Program/LeetCode/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="E:/Program/LeetCode/main.cpp">
+			<Option target="LeetCode"/>
+		</Unit>
+		<Unit filename="E:/Program/LeetCode/CMakeLists.txt">
+>>>>>>> c92e1869749b119ea81013f0b5c4b42bb6d4e426
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

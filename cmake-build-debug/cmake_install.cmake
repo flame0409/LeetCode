@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Install script for directory: D:/I_love_study!!!/fight/Project/LeetCode
+=======
+# Install script for directory: E:/Program/LeetCode
+>>>>>>> c92e1869749b119ea81013f0b5c4b42bb6d4e426
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +44,9 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
+<<<<<<< HEAD
 file(WRITE "D:/I_love_study!!!/fight/Project/LeetCode/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+=======
+file(WRITE "E:/Program/LeetCode/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+>>>>>>> c92e1869749b119ea81013f0b5c4b42bb6d4e426
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -67,10 +67,17 @@ RM = "D:\CLion 2020.2.1\bin\cmake\win\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = D:\I_love_study!!!\fight\Project\LeetCode
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = D:\I_love_study!!!\fight\Project\LeetCode\cmake-build-debug
+=======
+CMAKE_SOURCE_DIR = E:\Program\LeetCode
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = E:\Program\LeetCode\cmake-build-debug
+>>>>>>> c92e1869749b119ea81013f0b5c4b42bb6d4e426
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +106,15 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
+<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\I_love_study!!!\fight\Project\LeetCode\cmake-build-debug\CMakeFiles D:\I_love_study!!!\fight\Project\LeetCode\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\I_love_study!!!\fight\Project\LeetCode\cmake-build-debug\CMakeFiles 0
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Program\LeetCode\cmake-build-debug\CMakeFiles E:\Program\LeetCode\cmake-build-debug\CMakeFiles\progress.marks
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\Program\LeetCode\cmake-build-debug\CMakeFiles 0
+>>>>>>> c92e1869749b119ea81013f0b5c4b42bb6d4e426
 .PHONY : all
 
 # The main clean target
