@@ -59,5 +59,43 @@ public:
 };
 ```
 
+### 1.3 414 第三大的数
 
+取三个数，分别存，一次遍历
+
+但是如果转化为取第n个大的数: 初步考虑使用排序，最后遍历三个不同的
+
+```C++
+int thirdMax(vector<int>& nums) {
+        // 最大的三个数字 max1,max2,max3, 其中max3就是结果
+        long max1 = LONG_MIN;
+        long max2 = LONG_MIN;
+        long max3 = LONG_MIN;
+
+        int n = nums.size();
+        for (int i = 0; i < n; ++i)
+        {
+            // 考虑大于第三大的数字，而且和第一大第二大都不相同，忽略相同的情况
+            if (nums[i] > max3 && nums[i] != max1 && nums[i] != max2)
+            {
+                if (nums[i] > max1)
+                {
+                    // 更新max1
+                    max3 = max2;
+                    max2 = max1;
+                    max1 = nums[i];
+                }
+                else if (nums[i] > max2)
+                {
+                    // 更新max2
+                    max3 = max2;
+                    max2 = nums[i];
+                }
+                else max3 = nums[i];
+            }
+        }
+        // 考虑不存在max3,则直接返回最大值
+        return max3 == LONG_MIN ? max1 : max3;
+}
+```
 
