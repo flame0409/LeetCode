@@ -2,7 +2,9 @@
 
 ## 1. 数组
 
-### 1.1 485 最多1的和
+### 1.1 数组遍历
+
+#### 1.1.1 485 最多1的和
 
 思路：遍历，有一就加Cnt，遇非1夹断，与当前最大maxCnt相比，大了替换小了不管！
 
@@ -22,7 +24,7 @@ int findMaxConsecutiveOnes(vector<int>& nums) {
     }
 ```
 
-### 1.2 495：提莫攻击
+#### 1.1.2 495：提莫攻击
 
 解题思路
 直接将本体转化为一个有条件的暴力加和，所以导致时间用时较多。
@@ -59,7 +61,7 @@ public:
 };
 ```
 
-### 1.3 414 第三大的数
+#### 1.1.3 414 第三大的数
 
 取三个数，分别存，一次遍历
 
@@ -96,6 +98,42 @@ int thirdMax(vector<int>& nums) {
         }
         // 考虑不存在max3,则直接返回最大值
         return max3 == LONG_MIN ? max1 : max3;
+}
+```
+
+#### 1.1.4 628 三个数的最大乘积
+
+
+
+```c++
+int maximumProduct(vector<int>& nums) {
+  sort(nums.begin(), nums.begin()+nums.size());
+  for(int x=0;x<nums.size();x++)cout<<nums[x]<<endl;
+  if(nums[0]*nums[1]>=nums[nums.size()-2]*nums[nums.size()-3]&&(nums[nums.size()-1]>=0))return nums[0]*nums[1]*nums[nums.size()-1];
+  else
+  return (nums[nums.size()-1]*nums[nums.size()-2]*nums[nums.size()-3]);
+
+}
+```
+
+### 1.2 数组元素
+
+#### 1.2.1  错误的集合
+
+```c++
+vector<int> findErrorNums(vector<int>& nums) {
+
+  int sum=0 , len =nums.size() , c_Sum=(1+len)*len/2 , loss, repeat;
+  sort(nums.begin() , nums.end()); //将数组排序
+  for(int i=0 ; i<len-1 ; i++){
+    if(nums[i]==nums[i+1])
+      repeat =nums[i];//找出重复的
+  }
+  for(int i=0 ; i<len ;i++){
+    sum+=nums[i];
+  }
+  loss = repeat+(c_Sum-sum);
+  return {repeat , loss};
 }
 ```
 

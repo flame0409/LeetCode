@@ -81,13 +81,36 @@ int thirdMax(vector<int>& nums) {
         return max3 == LONG_MIN ? max1 : max3;
 }
 
+//628 三个数的最大乘积
+int maximumProduct(vector<int>& nums) {
+    sort(nums.begin(), nums.begin()+nums.size());
+    for(int x=0;x<nums.size();x++)cout<<nums[x]<<endl;
+    if(nums[0]*nums[1]>=nums[nums.size()-2]*nums[nums.size()-3]&&(nums[nums.size()-1]>=0))return nums[0]*nums[1]*nums[nums.size()-1];
+    else
+    return (nums[nums.size()-1]*nums[nums.size()-2]*nums[nums.size()-3]);
+}
 
+//645 错误的集合
+vector<int> findErrorNums(vector<int>& nums) {
+    int sum=0 , len =nums.size() , c_Sum=(1+len)*len/2 , loss, repeat;
+
+    sort(nums.begin() , nums.end()); //将数组排序
+    for(int i=0 ; i<len-1 ; i++){
+        if(nums[i]==nums[i+1])
+            repeat =nums[i];//找出重复的
+    }
+    for(int i=0 ; i<len ;i++){
+        sum+=nums[i];
+    }
+    loss = repeat+(c_Sum-sum);
+    return {repeat , loss};
+}
 
 int main() {
-    vector<int> list = {2, 2, 3};
+    vector<int> list = {1,2,2,4};
     //cout<<findMaxConsecutiveOnes(list);
     //vector<int> timeSeries = {1,2,3,4,5};
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
-    cout<<thirdMax(list);
+    cout<<findErrorNums(list)[1];
 }
