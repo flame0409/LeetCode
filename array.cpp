@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm> 
 #include <vector>
+#include<unordered_map>
 using namespace std;
 
 
@@ -105,12 +106,38 @@ vector<int> findErrorNums(vector<int>& nums) {
     loss = repeat+(c_Sum-sum);
     return {repeat , loss};
 }
+// 697 数组的度
+int findShortestSubArray(vector<int>& nums) {
+    unordered_map<int, vector<int>> mp;
+    int n = nums.size();
+    for (int i = 0; i < n; i++) {
+        if (mp.count(nums[i])) {
+            mp[nums[i]][0]++;
+            mp[nums[i]][2] = i;
+        } else {
+            mp[nums[i]] = {1, i, i};
+        }
+    }
+    int maxNum = 0, minLen = 0;
+    for (auto& [_, vec] : mp) {
+        if (maxNum < vec[0]) {
+            maxNum = vec[0];
+            minLen = vec[2] - vec[1] + 1;
+        } else if (maxNum == vec[0]) {
+            if (minLen > vec[2] - vec[1] + 1) {
+                minLen = vec[2] - vec[1] + 1;
+            }
+        }
+    }
+    return minLen;
+}
+
 
 int main() {
-    vector<int> list = {1,2,2,4};
+    vector<int> list = {1,2,3,5,6,7,2,4};
     //cout<<findMaxConsecutiveOnes(list);
     //vector<int> timeSeries = {1,2,3,4,5};
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
-    cout<<findErrorNums(list)[1];
+    cout<<findShortestSubArray(list);
 }
