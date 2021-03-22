@@ -2,6 +2,7 @@
 #include <algorithm> 
 #include <vector>
 #include<unordered_map>
+//#include<math>
 using namespace std;
 
 
@@ -91,53 +92,71 @@ int maximumProduct(vector<int>& nums) {
     return (nums[nums.size()-1]*nums[nums.size()-2]*nums[nums.size()-3]);
 }
 
-//645 错误的集合
-vector<int> findErrorNums(vector<int>& nums) {
-    int sum=0 , len =nums.size() , c_Sum=(1+len)*len/2 , loss, repeat;
+// //645 错误的集合
+// vector<int> findErrorNums(vector<int>& nums) {
+//     int sum=0 , len =nums.size() , c_Sum=(1+len)*len/2 , loss, repeat;
 
-    sort(nums.begin() , nums.end()); //将数组排序
-    for(int i=0 ; i<len-1 ; i++){
-        if(nums[i]==nums[i+1])
-            repeat =nums[i];//找出重复的
+//     sort(nums.begin() , nums.end()); //将数组排序
+//     for(int i=0 ; i<len-1 ; i++){
+//         if(nums[i]==nums[i+1])
+//             repeat =nums[i];//找出重复的
+//     }
+//     for(int i=0 ; i<len ;i++){
+//         sum+=nums[i];
+//     }
+//     loss = repeat+(c_Sum-sum);
+//     return {repeat , loss};
+// }
+// // 697 数组的度
+// int findShortestSubArray(vector<int>& nums) {
+//     unordered_map<int, vector<int>> mp;
+//     int n = nums.size();
+//     for (int i = 0; i < n; i++) {
+//         if (mp.count(nums[i])) {
+//             mp[nums[i]][0]++;
+//             mp[nums[i]][2] = i;
+//         } else {
+//             mp[nums[i]] = {1, i, i};
+//         }
+//     }
+//     int maxNum = 0, minLen = 0;
+//     for (auto& [_, vec] : mp) {
+//         if (maxNum < vec[0]) {
+//             maxNum = vec[0];
+//             minLen = vec[2] - vec[1] + 1;
+//         } else if (maxNum == vec[0]) {
+//             if (minLen > vec[2] - vec[1] + 1) {
+//                 minLen = vec[2] - vec[1] + 1;
+//             }
+//         }
+//     }
+//     return minLen;
+// }
+
+//448 消失的数字 
+vector<int> findDisappearedNumbers(vector<int>& nums) {
+    vector<int> res;
+    for(int x=0; x<nums.size(); x++){
+        if(nums[abs(nums[x])-1]>0){
+            nums[abs(nums[x])-1] = -nums[abs(nums[x])-1];
+            cout<<"get"<<nums[nums[x]-1]<<endl;;
+        }
+        else continue;
     }
-    for(int i=0 ; i<len ;i++){
-        sum+=nums[i];
-    }
-    loss = repeat+(c_Sum-sum);
-    return {repeat , loss};
-}
-// 697 数组的度
-int findShortestSubArray(vector<int>& nums) {
-    unordered_map<int, vector<int>> mp;
-    int n = nums.size();
-    for (int i = 0; i < n; i++) {
-        if (mp.count(nums[i])) {
-            mp[nums[i]][0]++;
-            mp[nums[i]][2] = i;
-        } else {
-            mp[nums[i]] = {1, i, i};
+    for(int x=1;x<=nums.size();x++){
+        if(nums[x-1]>0){
+            res.push_back(x);
+            cout<<x<<" ";
         }
     }
-    int maxNum = 0, minLen = 0;
-    for (auto& [_, vec] : mp) {
-        if (maxNum < vec[0]) {
-            maxNum = vec[0];
-            minLen = vec[2] - vec[1] + 1;
-        } else if (maxNum == vec[0]) {
-            if (minLen > vec[2] - vec[1] + 1) {
-                minLen = vec[2] - vec[1] + 1;
-            }
-        }
-    }
-    return minLen;
+    return res;
 }
-
 
 int main() {
-    vector<int> list = {1,2,3,5,6,7,2,4};
+    vector<int> list = {4,3,2,7,8,2,3,1};
     //cout<<findMaxConsecutiveOnes(list);
     //vector<int> timeSeries = {1,2,3,4,5};
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
-    cout<<findShortestSubArray(list);
+    findDisappearedNumbers(list);
 }

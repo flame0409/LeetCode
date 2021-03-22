@@ -137,3 +137,28 @@ vector<int> findErrorNums(vector<int>& nums) {
 }
 ```
 
+#### 1.2.2 消失的数字
+
+原地修改策略：如果数字x存在于数组中，则x对应的地址为nums[x],将对应位置的数字置为负数，完成之后遍历数组，如果对应地方为正数，则说明数组中此位置数字丢失。
+这道题好做的原因还是数字介于1-n且都为正，这样就联系起来了数组下标和数组内容。
+
+```c++
+vector<int> findDisappearedNumbers(vector<int>& nums) {
+        vector<int> res;
+        for(int x=0; x<nums.size(); x++){
+            if(nums[abs(nums[x])-1]>0){
+                nums[abs(nums[x])-1] = -nums[abs(nums[x])-1];
+            }
+            else continue;
+        }
+        for(int x=1;x<=nums.size();x++){
+            if(nums[x-1]>0){
+                res.push_back(x);
+            }
+        }
+        return res;
+    }
+
+
+```
+
