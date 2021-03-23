@@ -139,17 +139,33 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
     for(int x=0; x<nums.size(); x++){
         if(nums[abs(nums[x])-1]>0){
             nums[abs(nums[x])-1] = -nums[abs(nums[x])-1];
-            cout<<"get"<<nums[nums[x]-1]<<endl;;
         }
         else continue;
     }
     for(int x=1;x<=nums.size();x++){
         if(nums[x-1]>0){
             res.push_back(x);
-            cout<<x<<" ";
         }
     }
     return res;
+}
+// 442 数组中重复的数据
+
+vector<int> findDuplicates(vector<int>& nums) {
+    int flag = nums.size()+1;
+    vector<int> res;
+    for(int x=0;x<nums.size();x++){
+        nums[nums[x]%flag-1] += flag;
+    }
+    for(int x=0;x<nums.size();x++){
+        if((nums[x]-2*flag)>0){
+            cout<<x+1<<" ";
+            res.push_back(x+1);
+        }
+    }
+    return res;
+
+
 }
 
 int main() {
@@ -158,5 +174,5 @@ int main() {
     //vector<int> timeSeries = {1,2,3,4,5};
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
-    findDisappearedNumbers(list);
+    findDuplicates(list);
 }

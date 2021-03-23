@@ -162,3 +162,31 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
 
 ```
 
+#### 1.2.3 数组中重复数据
+
+**解题思路**
+本解法由448拓展而来，建议和448结合食用，首先遍历一遍数组，由于数组中数据都是分布于1~n，所以我们第一次遍历时，遇到的数字都以他为下标进行重定向，比如对于没有重复的数组，x应该位于num[x-1]，那么我们可以利用这个位置对应关系来计数。每次遇到x就在nums[x-1]中加n+1,在遍历时取模。这样第二次遍历中，我们可以通过查看对应位置中有几个n+1来判断x出现了几次。
+
+**代码**
+
+```c++
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+    int flag = nums.size()+1;
+    vector<int> res;
+    for(int x=0;x<nums.size();x++){
+        nums[nums[x]%flag-1] += flag;
+    }
+    for(int x=0;x<nums.size();x++){
+        if((nums[x]-2*flag)>0){
+            res.push_back(x+1);
+        }
+    }
+    return res;
+}
+};
+
+
+```
+
