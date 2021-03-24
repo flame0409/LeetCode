@@ -149,8 +149,8 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
     }
     return res;
 }
-// 442 数组中重复的数据
 
+// 442 数组中重复的数据
 vector<int> findDuplicates(vector<int>& nums) {
     int flag = nums.size()+1;
     vector<int> res;
@@ -164,15 +164,39 @@ vector<int> findDuplicates(vector<int>& nums) {
         }
     }
     return res;
+}
 
+//41 缺失的第一个正数
 
+int firstMissingPositive(vector<int>& nums) {
+    sort(nums.begin(), nums.end());
+    bool flag = false;
+    for(int x = 0;x < nums.size();x++){
+        if(nums[x]>0){
+            if(nums[x]==1)flag=true;
+            if(nums[x]!=1&&flag==false)return 1;
+            if(x==nums.size()-1)return nums[x]+1;
+            if(nums[x+1]!=nums[x]+1&&nums[x+1]!=nums[x])return nums[x]+1;
+            
+        }
+    }
+    if(nums[nums.size()-1]<=0)return 1;
+}
+//274 H指数
+int hIndex(vector<int>& citations) {
+    sort(citations.begin(), citations.end());
+    int h=0;
+    for(int x=citations.size(); x>0;x--){
+        if(citations[citations.size()-1-x]>x) h++;
+    }
+    return h;
 }
 
 int main() {
-    vector<int> list = {4,3,2,7,8,2,3,1};
+    vector<int> list = {3,0,6,1,5};
     //cout<<findMaxConsecutiveOnes(list);
     //vector<int> timeSeries = {1,2,3,4,5};
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
-    findDuplicates(list);
+    cout<<hIndex(list);
 }

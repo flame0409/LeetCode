@@ -165,7 +165,8 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
 #### 1.2.3 数组中重复数据
 
 **解题思路**
-本解法由448拓展而来，建议和448结合食用，首先遍历一遍数组，由于数组中数据都是分布于1~n，所以我们第一次遍历时，遇到的数字都以他为下标进行重定向，比如对于没有重复的数组，x应该位于num[x-1]，那么我们可以利用这个位置对应关系来计数。每次遇到x就在nums[x-1]中加n+1,在遍历时取模。这样第二次遍历中，我们可以通过查看对应位置中有几个n+1来判断x出现了几次。
+
+D7：本解法由448拓展而来，建议和448结合食用，首先遍历一遍数组，由于数组中数据都是分布于1~n，所以我们第一次遍历时，遇到的数字都以他为下标进行重定向，比如对于没有重复的数组，x应该位于num[x-1]，那么我们可以利用这个位置对应关系来计数。每次遇到x就在nums[x-1]中加n+1,在遍历时取模。这样第二次遍历中，我们可以通过查看对应位置中有几个n+1来判断x出现了几次。
 
 **代码**
 
@@ -186,7 +187,112 @@ public:
     return res;
 }
 };
-
-
 ```
+
+#### 1.2.4 缺失的第一个正数
+
+D8解题思路：排序，遍历，大于零的第一个如果是1，return 1，第一个不是一，往后找，返回第一个+1不等于随后一个数的数。
+遍历到最后返回nums[nums.size()-1]+1。
+
+![image-20210324204449487](LeetCode刷塔攻略.assets/image-20210324204449487.png)
+
+```c++
+int firstMissingPositive(vector<int>& nums) {
+  sort(nums.begin(), nums.end());
+  bool flag = false;
+  for(int x = 0;x < nums.size();x++){
+  if(nums[x]>0){
+     if(nums[x]==1)flag=true;
+     if(nums[x]!=1&&flag==false)return 1;
+     if(x==nums.size()-1)return nums[x]+1;
+     if(nums[x+1]!=nums[x]+1&&nums[x+1]!=nums[x])return nums[x]+1;
+}
+}
+  if(nums[nums.size()-1]<=0)return 1;
+}
+```
+
+新题解：类似于1.2.3，我们对数组进行遍历，对于遍历到的数 xx，如果它在 [1, N][1,N] 的范围内，那么就将数组中的第 x-1 个位置（注意：数组下标从 0 开始）打上「标记」。在遍历结束之后，如果所有的位置都被打上了标记，那么答案是 N+1，否则答案是最小的没有打上标记的位置加 1。
+
+算法的流程如下：
+
+1. 我们将数组中所有小于等于 00 的数修改为 N+1N+1；
+
+2. 我们遍历数组中的每一个数 x，它可能已经被打了标记，因此原本对应的数为 |x|，其中∣∣ 为绝对值符号。如果 ∣x∣∈[1,N]，那么我们给数组中的第∣x∣−1 个位置的数添加一个负号。注意如果它已经有负号，不需要重复添加；
+
+3. 在遍历完成之后，如果数组中的每一个数都是负数，那么答案是 N+1，否则答案是第一个正数的位置加 1。
+
+```c++
+int firstMissingPositive(vector<int>& nums) {
+    int n = nums.size();
+    for (int& num: nums) {
+      if (num <= 0) {
+        num = n + 1;
+      }
+    }
+    for (int i = 0; i < n; ++i) {
+     int num = abs(nums[i]);
+      if (num <= n) {
+        nums[num - 1] = -abs(nums[num - 1]);
+      }
+    }
+    for (int i = 0; i < n; ++i) {
+      if (nums[i] > 0) {
+        return i + 1;
+      }
+   }
+    return n + 1;
+}
+```
+
+#### 1.2.5 H指数
+
+![image-20210324221120711](LeetCode刷塔攻略.assets/image-20210324221120711.png)
+
+解题思路：
+
+先排序，后序遍历，如果要有H指数，对应citation[size-x-1]位置上的引用数应该大于当前的引用。
+
+```c++
+class Solution {
+public:
+  int hIndex(vector<int>& citations) {
+  sort(citations.begin(), citations.end());
+  int h=0;
+  for(int x=citations.size()-1; x>=0;x--){
+  if(citations[citations.size()-1-x]>x) h++;
+  }
+  return h;
+}
+};
+```
+
+新思路：计数排序
+
+算法的步骤如下：
+
+- （1）找出待排序的数组中最大和最小的元素
+- （2）统计数组中每个值为i的元素出现的次数，存入数组C的第i项
+- （3）对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）
+- （4）反向填充目标数组：将每个元素i放在新数组的第C(i)项，每放一个元素就将C(i)减去1
+
+![countingSort](LeetCode刷塔攻略.assets/countingSort.gif)
+
+```java
+public class Solution {
+    public int hIndex(int[] citations) {
+        int n = citations.length;
+        int[] papers = new int[n + 1];
+        // 计数
+        for (int c: citations)
+            papers[Math.min(n, c)]++;
+        // 找出最大的 k
+        int k = n;
+        for (int s = papers[n]; k > s; s += papers[k])
+            k--;
+        return k;
+    }
+}
+```
+
 
