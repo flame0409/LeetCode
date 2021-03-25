@@ -191,12 +191,36 @@ int hIndex(vector<int>& citations) {
     }
     return h;
 }
+//453最小操作次数使数组元素相等
+int minMoves(vector<int>& nums) {
+    if(nums.size()==1)return 0;
+    int minNum = nums[0];
+    int sum=0;
+    for(int &num: nums){
+        minNum = min(minNum, num);
+    }
+    for(int x=0; x<nums.size(); x++){
+        sum += nums[x]-minNum;
+    }
+    return sum;
+}
+//665 非递减数列
+bool checkPossibility(vector<int>& nums) {
+    bool flag = false;
+        for(int x=0; x<nums.size()-1; x++){
+            if(nums[x]>nums[x+1]&&flag==true)return false;
+            if(nums[x]>nums[x+1]&&flag==false)flag = true;
+            if(x==nums.size()-2)return true;
+        }
+        return true;
+    }
+
 
 int main() {
-    vector<int> list = {3,0,6,1,5};
+    vector<int> list = {4,2,3};
     //cout<<findMaxConsecutiveOnes(list);
     //vector<int> timeSeries = {1,2,3,4,5};
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
-    cout<<hIndex(list);
+    cout<<checkPossibility(list);
 }
