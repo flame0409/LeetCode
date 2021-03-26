@@ -374,3 +374,48 @@ public:
 ```
 
 ![image-20210325110841330](LeetCode刷塔攻略.assets/image-20210325110841330.png)
+
+#### 1.3.3 移动零
+
+![image-20210326091153185](LeetCode刷塔攻略.assets/image-20210326091153185.png)
+
+D10解题思路：
+
+双循环，外层循环找到0，内层循环找到非零，互换：
+
+```c++
+void moveZeroes(vector<int>& nums) {
+    for(int x=0; x<nums.size(); x++){
+        if(nums[x]==0){
+        for(int y=x;y<nums.size();y++){
+            if(nums[y]!=0){swap(nums[x],nums[y]);
+            break;
+            }
+        }
+        }
+    }
+     for(int x=0; x<nums.size(); x++){
+         cout<<nums[x]<<" ";
+     }
+
+}
+```
+
+![image-20210326091115436](LeetCode刷塔攻略.assets/image-20210326091115436.png)
+
+双指针：
+
+```C++
+int right=0;
+    for(int left=0; left<nums.size(); left++){
+        if(nums[left]){
+            swap(nums[right],nums[left]);
+            right++;
+        }
+    }
+    for(int x=0; x<nums.size(); x++){
+         cout<<nums[x]<<" ";
+     }
+```
+
+![image-20210326100456153](LeetCode刷塔攻略.assets/image-20210326100456153.png)

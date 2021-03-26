@@ -205,22 +205,62 @@ int minMoves(vector<int>& nums) {
     return sum;
 }
 //665 非递减数列
-bool checkPossibility(vector<int>& nums) {
-    bool flag = false;
-        for(int x=0; x<nums.size()-1; x++){
-            if(nums[x]>nums[x+1]&&flag==true)return false;
-            if(nums[x]>nums[x+1]&&flag==false)flag = true;
-            if(x==nums.size()-2)return true;
+ bool checkPossibility(vector<int>& nums) 
+    {
+        if (nums.size() == 1)   return true;
+        bool flag = nums[0] <= nums[1] ? true : false; 
+        for (int i = 1; i < nums.size() - 1; i++)
+        {
+            if (nums[i] > nums[i + 1])  
+            {
+                if (flag)   
+                {
+                    if (nums[i + 1] >= nums[ i - 1])
+                        nums[i] = nums[i + 1];
+                    else                            
+                        nums[i + 1] = nums[i];      
+                    flag = false;                  
+                }   
+                else        
+                    return false;
+            }
         }
         return true;
-    }
+}
 
+
+//283. 移动零
+void moveZeroes(vector<int>& nums) {
+    // for(int x=0; x<nums.size(); x++){
+    //     if(nums[x]==0){
+    //     for(int y=x;y<nums.size();y++){
+    //         if(nums[y]!=0){swap(nums[x],nums[y]);
+    //         break;
+    //         }
+    //     }
+    //     }
+    // }
+    //  for(int x=0; x<nums.size(); x++){
+    //      cout<<nums[x]<<" ";
+    //  }
+    int right=0;
+    for(int left=0; left<nums.size(); left++){
+        if(nums[left]){
+            swap(nums[right],nums[left]);
+            right++;
+        }
+    }
+    for(int x=0; x<nums.size(); x++){
+         cout<<nums[x]<<" ";
+     }
+}
 
 int main() {
-    vector<int> list = {4,2,3};
+    vector<int> list = {0,1,0,3,12};
     //cout<<findMaxConsecutiveOnes(list);
     //vector<int> timeSeries = {1,2,3,4,5};
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
-    cout<<checkPossibility(list);
+    //cout<<checkPossibility(list);
+    moveZeroes(list);
 }
