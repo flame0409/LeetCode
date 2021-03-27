@@ -168,20 +168,20 @@ vector<int> findDuplicates(vector<int>& nums) {
 
 //41 缺失的第一个正数
 
-int firstMissingPositive(vector<int>& nums) {
-    sort(nums.begin(), nums.end());
-    bool flag = false;
-    for(int x = 0;x < nums.size();x++){
-        if(nums[x]>0){
-            if(nums[x]==1)flag=true;
-            if(nums[x]!=1&&flag==false)return 1;
-            if(x==nums.size()-1)return nums[x]+1;
-            if(nums[x+1]!=nums[x]+1&&nums[x+1]!=nums[x])return nums[x]+1;
+// int firstMissingPositive(vector<int>& nums) {
+//     sort(nums.begin(), nums.end());
+//     bool flag = false;
+//     for(int x = 0;x < nums.size();x++){
+//         if(nums[x]>0){
+//             if(nums[x]==1)flag=true;
+//             if(nums[x]!=1&&flag==false)return 1;
+//             if(x==nums.size()-1)return nums[x]+1;
+//             if(nums[x+1]!=nums[x]+1&&nums[x+1]!=nums[x])return nums[x]+1;
             
-        }
-    }
-    if(nums[nums.size()-1]<=0)return 1;
-}
+//         }
+//     }
+//     if(nums[nums.size()-1]<=0)return 1;
+// }
 //274 H指数
 int hIndex(vector<int>& citations) {
     sort(citations.begin(), citations.end());
@@ -255,6 +255,33 @@ void moveZeroes(vector<int>& nums) {
      }
 }
 
+
+//118杨辉三角
+
+vector<vector<int>> generate(int numRows) {
+    vector<vector<int>> Triangle;
+    vector<int> row;
+    for(int x=1; x<=numRows; x++){
+        for (int y=1; y<=x; y++){
+            //首尾加1
+            if(row.size()==0) {row.emplace_back(1);continue;}
+            if(y==x||y==1){row.emplace_back(1);continue;}
+            row.emplace_back(Triangle[x-2][y-1]+Triangle[x-2][y-2]);
+        }
+        Triangle.emplace_back(row);
+        row.clear();
+    }
+
+    for(int x=0;x<Triangle.size();x++){
+        cout<<Triangle.size()<<endl;
+    }
+
+    return Triangle;
+    
+}
+
+
+
 int main() {
     vector<int> list = {0,1,0,3,12};
     //cout<<findMaxConsecutiveOnes(list);
@@ -262,5 +289,5 @@ int main() {
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
     //cout<<checkPossibility(list);
-    moveZeroes(list);
+    vector<vector<int>> jb = generate(5);
 }

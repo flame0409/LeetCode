@@ -419,3 +419,33 @@ int right=0;
 ```
 
 ![image-20210326100456153](LeetCode刷塔攻略.assets/image-20210326100456153.png)
+
+### 1.4 二维数组及滚动数组
+
+#### 1.4.1 杨辉三角
+
+![image-20210327103019674](LeetCode刷塔攻略.assets/image-20210327103019674.png)
+
+解题思路：
+
+首尾默认加一，其他地方按题目要求即可，注意下标对应
+
+```c++
+vector<vector<int>> generate(int numRows) {
+    vector<vector<int>> Triangle;
+    vector<int> row;
+    for(int x=1; x<=numRows; x++){
+        for (int y=1; y<=x; y++){
+            //首尾加1
+            if(row.size()==0) {row.emplace_back(1);continue;}
+            if(y==x||y==1){row.emplace_back(1);continue;}
+            row.emplace_back(Triangle[x-2][y-1]+Triangle[x-2][y-2]);
+        }
+        Triangle.emplace_back(row);
+        row.clear();
+    }
+    return Triangle;
+}
+```
+
+![image-20210327155909285](LeetCode刷塔攻略.assets/image-20210327155909285.png)
