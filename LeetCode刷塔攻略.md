@@ -449,3 +449,79 @@ vector<vector<int>> generate(int numRows) {
 ```
 
 ![image-20210327155909285](LeetCode刷塔攻略.assets/image-20210327155909285.png)
+
+#### 1.4.2 杨辉三角II
+
+![image-20210328165630060](LeetCode刷塔攻略.assets/image-20210328165630060.png)
+
+解题思路：两个vector，一个存上一行一个存下一行
+
+```c++
+vector<int> getRow(int rowIndex) {
+     vector<int> row_1 = {1};
+     vector<int> row_2 = {1,1};
+     if(rowIndex == 0)return row_1;
+     if(rowIndex == 1)return row_2;
+     for(int x=1; x<=rowIndex; x++){
+         row_1.swap(row_2);
+         row_2.clear();
+         for(int y=0; y<=x; y++){
+            if(y==0 || y==x)row_2.emplace_back(1); 
+            else
+            row_2.emplace_back(row_1[y]+row_1[y-1]);  
+         }
+        
+     }
+     //for(int x=0;x<row_2.size();x++)cout<<row_2[x]<<" ";
+     return row_2;
+```
+
+
+
+![image-20210328165525770](LeetCode刷塔攻略.assets/image-20210328165525770.png)
+
+改进解法：只用一个数组
+
+能否只用一个数组呢？
+
+递推式 表明，当前行第 i项的计算只与上一行第 i-1 项及第 i 项有关。因此我们可以倒着计算当前行，这样计算到第 i 项时，第 i-1 项仍然是上一行的值。
+
+```c++
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> row(rowIndex + 1);
+        row[0] = 1;
+        for (int i = 1; i <= rowIndex; ++i) {
+            for (int j = i; j > 0; --j) {
+                row[j] += row[j - 1];
+            }
+        }
+        return row;
+    }
+};
+```
+
+#### 1.4.3 范围求和II
+
+D11：
+
+![image-20210329193442256](LeetCode刷塔攻略.assets/image-20210329193442256.png)
+
+解题思路：
+
+两维的最小值处的值保证了每次都能加1
+
+```c++
+int maxCount(int m, int n, vector<vector<int>>& ops) {
+    if(ops.size()==0)return m*n;
+    int min_a = m, min_b = n;
+    for(int x=0; x<ops.size(); x++){
+        min_a = min(min_a, ops[x][0]);
+        min_b = min(min_b, ops[x][1]);
+    }
+    return min_a*min_b;
+}
+```
+
+![image-20210329193637832](LeetCode刷塔攻略.assets/image-20210329193637832.png)

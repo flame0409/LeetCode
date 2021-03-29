@@ -280,7 +280,24 @@ vector<vector<int>> generate(int numRows) {
     
 }
 
-
+ vector<int> getRow(int rowIndex) {
+     vector<int> row_1 = {1};
+     vector<int> row_2 = {1,1};
+     if(rowIndex == 0)return row_1;
+     if(rowIndex == 1)return row_2;
+     for(int x=1; x<=rowIndex; x++){
+         row_1.swap(row_2);
+         row_2.clear();
+         for(int y=0; y<=x; y++){
+            if(y==0 || y==x)row_2.emplace_back(1); 
+            else
+            row_2.emplace_back(row_1[y]+row_1[y-1]);  
+         }
+        
+     }
+     for(int x=0;x<row_2.size();x++)cout<<row_2[x]<<" ";
+     return row_2;
+}
 
 int main() {
     vector<int> list = {0,1,0,3,12};
@@ -289,5 +306,5 @@ int main() {
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
     //cout<<checkPossibility(list);
-    vector<vector<int>> jb = generate(5);
+    vector<int> jb = getRow(3);
 }
