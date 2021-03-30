@@ -4,6 +4,8 @@
 #include<unordered_map>
 //#include<math>
 using namespace std;
+#include<cstdio>
+#include<algorithm>
 
 
 //485最大连续1个数
@@ -295,16 +297,53 @@ vector<vector<int>> generate(int numRows) {
          }
         
      }
-     for(int x=0;x<row_2.size();x++)cout<<row_2[x]<<" ";
+     //for(int x=0;x<row_2.size();x++)cout<<row_2[x]<<" ";
      return row_2;
 }
 
+//598范围求和
+int maxCount(int m, int n, vector<vector<int>>& ops) {
+    if(ops.size()==0)return m*n;
+    int min_a = m, min_b = n;
+    for(int x=0; x<ops.size(); x++){
+        min_a = min(min_a, ops[x][0]);
+        min_b = min(min_b, ops[x][1]);
+    }
+    return min_a*min_b;
+
+}
+
+//189 旋转数组*****
+void rotate(vector<int>& nums, int k) {
+    // vector<int> newNum(nums.size());
+    // for(int n=0; n<nums.size(); n++){
+    //     if(n+k >= nums.size()){
+    //         newNum[(n+k)%nums.size()]=nums[n];
+    //     }
+    //     else newNum[n+k] = nums[n];
+    // }
+    // newNum.swap(nums);
+
+   int n = nums.size();
+        k = k % n;
+        int count = __gcd(k, n);
+        for (int start = 0; start < count; ++start) {
+            int current = start;
+            int prev = nums[start];
+            do {
+                int next = (current + k) % n;
+                swap(nums[next], prev);
+                current = next;
+            } while (start != current);
+        }
+}
+
 int main() {
-    vector<int> list = {0,1,0,3,12};
+    vector<int> list = {1,2,3,4,5,6,7};
     //cout<<findMaxConsecutiveOnes(list);
     //vector<int> timeSeries = {1,2,3,4,5};
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
     //cout<<checkPossibility(list);
-    vector<int> jb = getRow(3);
+    rotate(list, 3);
 }

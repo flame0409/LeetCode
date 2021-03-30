@@ -525,3 +525,55 @@ int maxCount(int m, int n, vector<vector<int>>& ops) {
 ```
 
 ![image-20210329193637832](LeetCode刷塔攻略.assets/image-20210329193637832.png)
+
+
+
+### 1.5 数组的旋转
+
+![image-20210330161009904](LeetCode刷塔攻略.assets/image-20210330161009904.png)
+
+D12:
+
+解题思路1：
+
+使用一个新数组接收旋转的数组
+
+```c++
+void rotate(vector<int>& nums, int k) {
+    vector<int> newNum(nums.size());
+    for(int n=0; n<nums.size(); n++){
+        if(n+k >= nums.size()){
+            newNum[(n+k)%nums.size()]=nums[n];
+        }
+        else newNum[n+k] = nums[n];
+    }
+    newNum.swap(nums);
+}
+```
+
+![image-20210330161238339](LeetCode刷塔攻略.assets/image-20210330161238339.png)
+
+解题思路2：
+
+方法一中使用额外数组的原因在于如果我们直接将每个数字放至它最后的位置，这样被放置位置的元素会被覆盖从而丢失。因此，从另一个角度，我们可以将被替换的元素保存在变量 中，从而避免了额外数组的开销。
+
+![image.png](LeetCode刷塔攻略.assets/f0493a97cdb7bc46b37306ca14e555451496f9f9c21effcad8517a81a26f30d6-image.png)
+
+```c++
+   void rotate(vector<int>& nums, int k) {
+    int n = nums.size();
+    k = k % n;
+    int count = __gcd(k, n);
+    for (int start = 0; start < count; ++start) {
+        int current = start;
+        int prev = nums[start];
+        do {
+            int next = (current + k) % n;
+            swap(nums[next], prev);
+            current = next;
+        } while (start != current);
+    }
+}
+```
+
+![image-20210330194528516](LeetCode刷塔攻略.assets/image-20210330194528516.png)
