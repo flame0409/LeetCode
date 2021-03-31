@@ -325,25 +325,42 @@ void rotate(vector<int>& nums, int k) {
     // newNum.swap(nums);
 
    int n = nums.size();
-        k = k % n;
-        int count = __gcd(k, n);
-        for (int start = 0; start < count; ++start) {
-            int current = start;
-            int prev = nums[start];
-            do {
-                int next = (current + k) % n;
-                swap(nums[next], prev);
-                current = next;
-            } while (start != current);
-        }
+    k = k % n;
+    int count = __gcd(k, n);
+    for (int start = 0; start < count; ++start) {
+        int current = start;
+        int prev = nums[start];
+        do {
+            int next = (current + k) % n;
+            swap(nums[next], prev);
+            current = next;
+        } while (start != current);
+    }
+    
+}
+
+//396 旋转函数
+int maxRotateFunction(vector<int>& nums) {
+    int res = 0;
+    int max_res = INT_MIN;
+    int sum_num = 0;
+    for(int x = 0; x<nums.size(); x++){
+        sum_num += nums[x];
+        res += x*nums[x];
+    }
+    for(int x = nums.size()-1; x >= 0; x--){
+        res = res + sum_num - nums[x]*nums.size();
+        max_res = max(max_res, res);
+    }
+    return max_res;
 }
 
 int main() {
-    vector<int> list = {1,2,3,4,5,6,7};
+    vector<int> list = {4,3,2,6};
     //cout<<findMaxConsecutiveOnes(list);
     //vector<int> timeSeries = {1,2,3,4,5};
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
     //cout<<checkPossibility(list);
-    rotate(list, 3);
+    cout<<maxRotateFunction(list);
 }

@@ -530,6 +530,8 @@ int maxCount(int m, int n, vector<vector<int>>& ops) {
 
 ### 1.5 数组的旋转
 
+#### 1.5.1 旋转数组
+
 ![image-20210330161009904](LeetCode刷塔攻略.assets/image-20210330161009904.png)
 
 D12:
@@ -577,3 +579,36 @@ void rotate(vector<int>& nums, int k) {
 ```
 
 ![image-20210330194528516](LeetCode刷塔攻略.assets/image-20210330194528516.png)
+
+#### 1.5.2 旋转函数
+
+D13：
+
+![image-20210331104015896](LeetCode刷塔攻略.assets/image-20210331104015896.png)
+
+解题思路1：
+
+旋转数组，分别求大小
+
+解题思路2：
+
+所有数组全体右移，相当于每一位全加1，并减去n*sums[n-1]
+
+```c++
+int maxRotateFunction(vector<int>& nums) {
+    int res = 0;
+    int max_res = INT_MIN;
+    int sum_num = 0;
+    for(int x = 0; x<nums.size(); x++){
+        sum_num += nums[x];
+        res += x*nums[x];
+    }
+    for(int x = nums.size()-1; x >= 0; x--){
+        res = res + sum_num - nums[x]*nums.size();
+        max_res = max(max_res, res);
+    }
+    return max_res;
+}
+```
+
+![image-20210331104313557](LeetCode刷塔攻略.assets/image-20210331104313557.png)
