@@ -612,3 +612,40 @@ int maxRotateFunction(vector<int>& nums) {
 ```
 
 ![image-20210331104313557](LeetCode刷塔攻略.assets/image-20210331104313557.png)
+
+### 1.6 特定顺序遍历二维数组
+
+#### 1.6.1 螺旋矩阵
+
+D14：
+
+![image-20210401104013813](LeetCode刷塔攻略.assets/image-20210401104013813.png)
+
+解题思路：绕圈圈，由最外层转一圈，进内层再开始转一圈转到无处可转。
+
+```c++
+vector<int> spiralOrder(vector<vector<int>>& matrix) {
+     if(matrix.size()==0&&matrix[0].size()==0)return {};
+     vector <int> res;
+     int left=0;int top=0;int buttom = matrix.size()-1;int right = matrix[0].size()-1;
+     while(left <= right && top <= buttom){
+         for(int column=left; column <= right; column++)
+         res.push_back(matrix[top][column]);
+         for(int row = top+1; row<=buttom; row++)
+         res.push_back(matrix[row][right]);
+         if(left<right && top<buttom){
+             for(int column = right-1; column>=left; column--)
+             res.push_back(matrix[buttom][column]);
+             for(int row = buttom-1; row> top; row--)
+             res.push_back(matrix[row][left]);
+         }
+         top++;
+         left++;
+         buttom--;
+         right--;
+     }
+     return res;
+}
+```
+
+![image-20210401153018633](LeetCode刷塔攻略.assets/image-20210401153018633.png)

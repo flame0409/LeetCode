@@ -355,12 +355,36 @@ int maxRotateFunction(vector<int>& nums) {
     return max_res;
 }
 
+//54. 螺旋矩阵
+ vector<int> spiralOrder(vector<vector<int>>& matrix) {
+     if(matrix.size()==0&&matrix[0].size()==0)return {};
+     vector <int> res;
+     int left=0;int top=0;int buttom = matrix.size()-1;int right = matrix[0].size()-1;
+     while(left <= right && top <= buttom){
+         for(int column=left; column <= right; column++)
+         res.push_back(matrix[top][column]);
+         for(int row = top+1; row<=buttom; row++)
+         res.push_back(matrix[row][right]);
+         if(left<right && top<buttom){
+             for(int column = right-1; column>=left; column--)
+             res.push_back(matrix[buttom][column]);
+             for(int row = buttom-1; row> top; row--)
+             res.push_back(matrix[row][left]);
+         }
+         top++;
+         left++;
+         buttom--;
+         right--;
+     }
+     return res;
+}
+
 int main() {
-    vector<int> list = {4,3,2,6};
+    vector<vector<int>> list = {{1,2,3},{4,5,6},{7,8,9}};
     //cout<<findMaxConsecutiveOnes(list);
     //vector<int> timeSeries = {1,2,3,4,5};
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
     //cout<<checkPossibility(list);
-    cout<<maxRotateFunction(list);
+    spiralOrder(list);
 }
