@@ -649,3 +649,49 @@ vector<int> spiralOrder(vector<vector<int>>& matrix) {
 ```
 
 ![image-20210401153018633](LeetCode刷塔攻略.assets/image-20210401153018633.png)
+
+#### 1.6.2 螺旋矩阵
+
+d14：
+
+![image-20210407152903202](LeetCode刷塔攻略.assets/image-20210407152903202.png)
+
+解题思路：
+
+和I相同，按层遍历
+
+```c++
+vector<vector<int>> generateMatrix(int n) {
+    vector<vector <int>> list(n, vector<int>(n));
+
+    int left=0;int top=0;int buttom = n-1;int right = n-1;
+    int num= 1;
+    while(left <= right && top <= buttom){
+        for(int column = left; column <= right; column++){
+            list[top][column] = num;
+            num++;
+        }
+        for(int row = top+1; row<=buttom; row++){
+            list[row][right] = num;
+            num++;
+        }
+        if(left<right && top<buttom){
+            for(int column = right-1; column >= left; column--){
+                list[buttom][column] = num;
+                num++;
+            }
+            for(int row = buttom -1; row > top; row--){
+                list[row][left] = num;
+                num++;
+            }
+        }
+        top++;
+         left++;
+         buttom--;
+         right--;
+    }
+    return list;
+}
+```
+
+![image-20210407153214783](LeetCode刷塔攻略.assets/image-20210407153214783.png)

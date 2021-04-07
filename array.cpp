@@ -378,6 +378,44 @@ int maxRotateFunction(vector<int>& nums) {
      }
      return res;
 }
+// 59 螺旋矩阵II
+vector<vector<int>> generateMatrix(int n) {
+    vector<vector <int>> list(n, vector<int>(n));
+
+    int left=0;int top=0;int buttom = n-1;int right = n-1;
+    int num= 1;
+    while(left <= right && top <= buttom){
+        for(int column = left; column <= right; column++){
+            list[top][column] = num;
+            num++;
+        }
+        for(int row = top+1; row<=buttom; row++){
+            list[row][right] = num;
+            num++;
+        }
+        if(left<right && top<buttom){
+            for(int column = right-1; column >= left; column--){
+                list[buttom][column] = num;
+                num++;
+            }
+            for(int row = buttom -1; row > top; row--){
+                list[row][left] = num;
+                num++;
+            }
+        }
+        top++;
+         left++;
+         buttom--;
+         right--;
+    }
+    return list;
+
+}
+
+
+
+
+
 
 int main() {
     vector<vector<int>> list = {{1,2,3},{4,5,6},{7,8,9}};
@@ -386,5 +424,5 @@ int main() {
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
     //cout<<checkPossibility(list);
-    spiralOrder(list);
+    generateMatrix(3);
 }
