@@ -412,7 +412,44 @@ vector<vector<int>> generateMatrix(int n) {
 
 }
 
-
+//498 对角线遍历
+vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
+    vector<int> list;
+	int row = matrix.size();
+	if (row == 0) return list;
+	int col = matrix[0].size();
+	if (col == 0) return list;
+    int num = col + row -1;
+    int m=0, n=0;
+    for(int i=0; i<num; i++){//计数，一旦有这么多就跳出
+        if(i % 2 == 0){//往右上
+        while(m >=0 && n < col){//不越界
+            list.push_back(matrix[m][n]);
+            m--;
+            n++;
+        }
+        if(n < col){
+            m++;
+        }else{//对角线越界
+            m = m+2;
+            n--;
+        }
+        }
+        else{
+            while(n>=0 && m<row){
+                list.push_back(matrix[m][n]);
+                m++;
+                n--;
+            }
+            if(m < row )n++;
+            else{
+                n = n+2;
+                m--;
+            }
+        }
+    }
+    return list;
+}
 
 
 
@@ -424,5 +461,5 @@ int main() {
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
     //cout<<checkPossibility(list);
-    generateMatrix(3);
+    vector<int> jb = findDiagonalOrder(list);
 }

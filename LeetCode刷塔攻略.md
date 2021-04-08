@@ -650,7 +650,7 @@ vector<int> spiralOrder(vector<vector<int>>& matrix) {
 
 ![image-20210401153018633](LeetCode刷塔攻略.assets/image-20210401153018633.png)
 
-#### 1.6.2 螺旋矩阵
+#### 1.6.2 螺旋矩阵II
 
 d14：
 
@@ -695,3 +695,63 @@ vector<vector<int>> generateMatrix(int n) {
 ```
 
 ![image-20210407153214783](LeetCode刷塔攻略.assets/image-20210407153214783.png)
+
+#### 1.6.3 对角线遍历
+
+D15：
+
+![image-20210408102600532](LeetCode刷塔攻略.assets/image-20210408102600532.png)
+
+解题思路：
+
+**1.** 共两种方向的对角线，根据（col+row-1）%2确定是向右上或者左下
+
+**2.** 向左上遍历到头，再分两种情况
+
+**3.** 如果再走一步，col未越界，则m++回来就行
+
+**4.** 如果col也越界，则意味着走到了二维矩阵的下三角， m = m+2;n--;
+
+**5.** 右下同样
+
+```c++
+vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
+    vector<int> list;
+	int row = matrix.size();
+	if (row == 0) return list;
+	int col = matrix[0].size();
+	if (col == 0) return list;
+    int num = col + row -1;
+    int m=0, n=0;
+    for(int i=0; i<num; i++){//计数，一旦有这么多就跳出
+        if(i % 2 == 0){//往右上
+        while(m >=0 && n < col){//不越界
+            list.push_back(matrix[m][n]);
+            m--;
+            n++;
+        }
+        if(n < col){
+            m++;
+        }else{//对角线越界
+            m = m+2;
+            n--;
+        }
+        }
+        else{
+            while(n>=0 && m<row){
+                list.push_back(matrix[m][n]);
+                m++;
+                n--;
+            }
+            if(m < row )n++;
+            else{
+                n = n+2;
+                m--;
+            }
+        }
+    }
+    return list;
+}
+```
+
+![image-20210408103140163](LeetCode刷塔攻略.assets/image-20210408103140163.png)
