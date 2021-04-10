@@ -755,3 +755,149 @@ vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
 ```
 
 ![image-20210408103140163](LeetCode刷塔攻略.assets/image-20210408103140163.png)
+
+### 1.7 二维数组变换
+
+#### 1.7.1 重塑矩阵
+
+D16：
+
+![image-20210409105424523](LeetCode刷塔攻略.assets/image-20210409105424523.png)
+
+解题思路：
+
+**1.** 遍历nums
+
+**2.** 挨个放入list
+
+**3.** list的下标改变
+
+```c++
+vector<vector<int>> matrixReshape(vector<vector<int>>& nums, int r, int c) {
+    vector<vector<int>> list(r,vector<int>(c));
+    int n_row = nums.size();
+	int n_col = nums[0].size();
+    if(n_col*n_row!=r*c)return nums;
+    int m=0,n=0;
+    for(int x=0;x<n_row;x++){
+        for(int y=0;y<n_col;y++){
+            list[m][n]=nums[x][y];
+            n++;
+            if(n==c){
+                n=0;
+                m++;
+            }
+        }
+    }
+    return list;
+}
+```
+
+![image-20210409105510120](LeetCode刷塔攻略.assets/image-20210409105510120.png)
+
+1.7.2 旋转矩阵
+
+![image-20210409115710075](LeetCode刷塔攻略.assets/image-20210409115710075.png)
+
+思路：
+
+1. 上下对半旋转
+2. 主对角线旋转
+
+![image-20210409115755178](LeetCode刷塔攻略.assets/image-20210409115755178.png)
+
+```c++
+void rotate(vector<vector<int>>& matrix) {
+    void rotate(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        // 水平翻转
+        for (int i = 0; i < n / 2; ++i) {
+            for (int j = 0; j < n; ++j) {
+                swap(matrix[i][j], matrix[n - i - 1][j]);
+            }
+        }
+        // 主对角线翻转
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < i; ++j) {
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+    }
+}
+```
+
+![image-20210409115828106](LeetCode刷塔攻略.assets/image-20210409115828106.png)
+
+#### 1.7.2 矩阵置零
+
+D17：
+
+![image-20210410150606514](LeetCode刷塔攻略.assets/image-20210410150606514.png)
+
+解题思路;
+
+**1.** 设定两个flag，Xneedclr。Yneedclr,用于记录第0行和第0列是否需要清除
+
+**2.** 开始逐行遍历
+
+**3.** 一旦遇到有0，将此列的第一个数置为0，在整行遍历完后，让此行第一个数置为0，这样所有的置零位数都是已经读过的数
+
+**4.** 遍历完成后，查首行的0和首列的0，查到了就置这一行或一列为0
+
+**5.** 根据两个flag确定是否要清除第0行/列
+
+```c++
+void setZeroes(vector<vector<int>>& matrix) {
+    int row = matrix.size();
+    int col = matrix[0].size();
+    int flag = 1;
+    int Xneedclr=0;
+    int Yneedclr=0;
+    for(int i = 0; i < row; i++){
+        flag=1;
+        for(int j = 0; j < col; j++){
+            if(matrix[i][j]==0){
+                if(i==0)Xneedclr=1;
+                if(j==0)Yneedclr=1;
+                matrix[0][j] = 0;//置列头为0
+                flag = 0;//当前行需要清零
+            }
+
+        }
+        //当前行搜索完成
+        if(flag == 0)
+        matrix[i][0] = 0;//将已搜索过的行头置为零
+    }
+    
+    for(int i = 0; i < row; i++){
+        if(matrix[i][0]==0){//第零列不清零，会去除标志位
+            if(i==0)continue;
+        for(int j=1; j< col;j++){
+            matrix[i][j]=0;
+        }
+    }
+    }
+    for(int j=0; j<col; j++){
+        if(matrix[0][j]==0){
+            if(j==0)continue;
+            for(int i=0; i<row; i++){
+                matrix[i][j]=0;
+            }
+        }
+    }
+     if(Xneedclr==1){
+         for(int j=0; j<col; j++){
+             matrix[0][j]=0;
+         }
+     }
+     if(Yneedclr==1){
+         for(int i=0; i<row; i++){
+             matrix[i][0]=0;
+         }
+     }
+        
+}
+
+```
+
+![image-20210410151119808](LeetCode刷塔攻略.assets/image-20210410151119808.png)

@@ -412,7 +412,7 @@ vector<vector<int>> generateMatrix(int n) {
 
 }
 
-//498 对角线遍历
+// 498 对角线遍历
 vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
     vector<int> list;
 	int row = matrix.size();
@@ -451,15 +451,101 @@ vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
     return list;
 }
 
+//566 重塑矩阵
+vector<vector<int>> matrixReshape(vector<vector<int>>& nums, int r, int c) {
+    vector<vector<int>> list(r,vector<int>(c));
+    int n_row = nums.size();
+	int n_col = nums[0].size();
+    if(n_col*n_row!=r*c)return nums;
+    int m=0,n=0;
+    for(int x=0;x<n_row;x++){
+        for(int y=0;y<n_col;y++){
+            list[m][n]=nums[x][y];
+            n++;
+            if(n==c){
+                n=0;
+                m++;
+            }
+        }
+    }
+    return list;
+}
 
+//旋转图像
+void rotate(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        // 水平翻转
+        for (int i = 0; i < n / 2; ++i) {
+            for (int j = 0; j < n; ++j) {
+                swap(matrix[i][j], matrix[n - i - 1][j]);
+            }
+        }
+        // 主对角线翻转
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < i; ++j) {
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+}
 
+//73 矩阵置零
+void setZeroes(vector<vector<int>>& matrix) {
+    int row = matrix.size();
+    int col = matrix[0].size();
+    int flag = 1;
+    int Xneedclr=0;
+    int Yneedclr=0;
+    for(int i = 0; i < row; i++){
+        flag=1;
+        for(int j = 0; j < col; j++){
+            if(matrix[i][j]==0){
+                if(i==0)Xneedclr=1;
+                if(j==0)Yneedclr=1;
+                matrix[0][j] = 0;//置列头为0
+                flag = 0;//当前行需要清零
+            }
+
+        }
+        //当前行搜索完成
+        if(flag == 0)
+        matrix[i][0] = 0;//将已搜索过的行头置为零
+    }
+    
+    for(int i = 0; i < row; i++){
+        if(matrix[i][0]==0){//第零列不清零，会去除标志位
+            if(i==0)continue;
+        for(int j=1; j< col;j++){
+            matrix[i][j]=0;
+        }
+    }
+    }
+    for(int j=0; j<col; j++){
+        if(matrix[0][j]==0){
+            if(j==0)continue;
+            for(int i=0; i<row; i++){
+                matrix[i][j]=0;
+            }
+        }
+    }
+     if(Xneedclr==1){
+         for(int j=0; j<col; j++){
+             matrix[0][j]=0;
+         }
+     }
+     if(Yneedclr==1){
+         for(int i=0; i<row; i++){
+             matrix[i][0]=0;
+         }
+     }
+        
+}
 
 int main() {
-    vector<vector<int>> list = {{1,2,3},{4,5,6},{7,8,9}};
+    vector<vector<int>> list = {{0,1,2,0},{3,4,5,2},{1,3,1,5}};
     //cout<<findMaxConsecutiveOnes(list);
     //vector<int> timeSeries = {1,2,3,4,5};
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
     //cout<<checkPossibility(list);
-    vector<int> jb = findDiagonalOrder(list);
+    setZeroes(list);
 }
