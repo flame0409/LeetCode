@@ -901,3 +901,63 @@ void setZeroes(vector<vector<int>>& matrix) {
 ```
 
 ![image-20210410151119808](LeetCode刷塔攻略.assets/image-20210410151119808.png)
+
+#### 1.7.3 生命细胞
+
+D18：
+
+![image-20210413160124049](LeetCode刷塔攻略.assets/image-20210413160124049.png)
+
+![image-20210413160136660](LeetCode刷塔攻略.assets/image-20210413160136660.png)
+
+解题思路：
+
+**1.** 遍历每个元素
+
+**2.** 对周围八个求和，-1当做活细胞
+
+**3.** 若原来是活细胞，死了，置为-1
+
+**4.** 若原来是死细胞活了，置为2
+
+**5.** 再次遍历，更新状态
+
+```c++
+void gameOfLife(vector<vector<int>>& board) {
+    int row = board.size();
+    int col = board[0].size();
+    int move[3] = {1, 0, -1};
+
+    for(int x = 0; x < row; x++){
+        for(int y= 0; y < col ; y++){//两层循环每一个细胞，判死活并更新状态；
+
+        int neiber = 0;
+
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+
+                int r = x + move[i];
+                int c = y + move[j];
+                if(move[i]==0&&move[j]==0)continue;
+                if((r<row&&r>=0)&&(c<col&&c>=0)&&(board[r][c]==1||board[r][c]==-1))
+                neiber++;
+            }
+        }
+        if(board[x][y]==1){//活细胞
+        if(neiber<2||neiber>3)board[x][y]=-1;//死
+        }
+        if(board[x][y]==0&&neiber==3)
+            board[x][y]=2;
+        }
+    }
+
+    for(int x = 0; x < row; x++){
+        for(int y= 0; y<col ; y++){//两层循环每一个细胞，判死活并更新状态；
+        if(board[x][y]==2)board[x][y]=1;
+        if(board[x][y]==-1)board[x][y]=0;//更新状态
+        }
+    }
+    }
+```
+
+![image-20210413160526403](LeetCode刷塔攻略.assets/image-20210413160526403.png)

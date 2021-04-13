@@ -540,12 +540,50 @@ void setZeroes(vector<vector<int>>& matrix) {
         
 }
 
+//289 生命游戏
+void gameOfLife(vector<vector<int>>& board) {
+    int row = board.size();
+    int col = board[0].size();
+    int move[3] = {1, 0, -1};
+
+    for(int x = 0; x < row; x++){
+        for(int y= 0; y < col ; y++){//两层循环每一个细胞，判死活并更新状态；
+
+        int neiber = 0;
+
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+
+                int r = x + move[i];
+                int c = y + move[j];
+                if(move[i]==0&&move[j]==0)continue;
+                if((r<row&&r>=0)&&(c<col&&c>=0)&&(board[r][c]==1||board[r][c]==-1))
+                neiber++;
+            }
+        }
+        if(board[x][y]==1){//活细胞
+        if(neiber<2||neiber>3)board[x][y]=-1;//死
+        }
+        if(board[x][y]==0&&neiber==3)
+            board[x][y]=2;
+        }
+    }
+
+    for(int x = 0; x < row; x++){
+        for(int y= 0; y<col ; y++){//两层循环每一个细胞，判死活并更新状态；
+        if(board[x][y]==2)board[x][y]=1;
+        if(board[x][y]==-1)board[x][y]=0;//更新状态
+        }
+    }
+    
+}
+
 int main() {
-    vector<vector<int>> list = {{0,1,2,0},{3,4,5,2},{1,3,1,5}};
+    vector<vector<int>> list = {{0,1,0},{0,0,1},{1,1,1},{0,0,0}};
     //cout<<findMaxConsecutiveOnes(list);
     //vector<int> timeSeries = {1,2,3,4,5};
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
     //cout<<checkPossibility(list);
-    setZeroes(list);
+    gameOfLife(list);
 }
