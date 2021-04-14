@@ -961,3 +961,38 @@ void gameOfLife(vector<vector<int>>& board) {
 ```
 
 ![image-20210413160526403](LeetCode刷塔攻略.assets/image-20210413160526403.png)
+
+### 1.8 前缀和数组
+
+#### 1.8.1 除自身以外的数组
+
+D19:
+
+![image-20210414162331749](LeetCode刷塔攻略.assets/image-20210414162331749.png)
+
+解题思路：
+
+1. 先遍历一遍，将所有的左前缀放到数组里
+2. 在倒序遍历一遍，用R记录右前缀，并可以与左前缀相乘放入原位置
+
+```c++
+
+vector<int> productExceptSelf(vector<int>& nums) {
+    vector <int> res(nums.size());
+    res[0] = 1;
+    for(int n=1; n<nums.size(); n++){
+        res[n] = res[n-1]*nums[n-1];
+    }//将左边都存入
+
+    int R = 1;
+    for(int n=nums.size()-1; n>=0; n--){
+        res[n] = res[n]*R;
+        R *= nums[n];
+    }
+    return res;
+
+}
+
+```
+
+![image-20210414162554038](LeetCode刷塔攻略.assets/image-20210414162554038.png)

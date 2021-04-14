@@ -578,12 +578,34 @@ void gameOfLife(vector<vector<int>>& board) {
     
 }
 
+//238 除自身以外数组的乘积
+
+vector<int> productExceptSelf(vector<int>& nums) {
+    vector <int> res(nums.size());
+    res[0] = 1;
+    for(int n=1; n<nums.size(); n++){
+        res[n] = res[n-1]*nums[n-1];
+    }//将左边都存入
+
+    int R = 1;
+    for(int n=nums.size()-1; n>=0; n--){
+        res[n] = res[n]*R;
+        R *= nums[n];
+    }
+    return res;
+
+}
+
+
+
+
 int main() {
-    vector<vector<int>> list = {{0,1,0},{0,0,1},{1,1,1},{0,0,0}};
+    vector<int> list = {1,2,3,4};
     //cout<<findMaxConsecutiveOnes(list);
     //vector<int> timeSeries = {1,2,3,4,5};
     //int duration = 5;
     //cout<<findPoisonedDuration(timeSeries, duration);
     //cout<<checkPossibility(list);
-    gameOfLife(list);
+    productExceptSelf(list);
+    
 }
