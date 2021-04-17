@@ -997,9 +997,11 @@ vector<int> productExceptSelf(vector<int>& nums) {
 
 ![image-20210414162554038](LeetCode刷塔攻略.assets/image-20210414162554038.png)
 
-# 2. 字符串
+## 2. 字符串
 
-## 2.1 字符
+### 2.1 字符
+
+#### 2.1.1 检测大写字母
 
 D20：
 
@@ -1045,3 +1047,40 @@ bool detectCapitalUse(string word) {
 ```
 
 ![image-20210416103126056](LeetCode刷塔攻略.assets/image-20210416103126056.png)
+
+### 2.2 回文数
+
+#### 2.2.1 验证回文串
+
+D21：
+
+![image-20210417110902171](LeetCode刷塔攻略.assets/image-20210417110902171.png)
+
+思路：双指针两边探遇到非字母数字字符跳过。
+
+主要学习一下那几个API
+
+```c++
+ bool isPalindrome(string s) {
+        int n = s.size();
+        int left = 0, right = n - 1;
+        while (left < right) {
+            while (left < right && !isalnum(s[left])) {
+                ++left;
+            }
+            while (left < right && !isalnum(s[right])) {
+                --right;
+            }
+            if (left < right) {
+                if (tolower(s[left]) != tolower(s[right])) {
+                    return false;
+                }
+                ++left;
+                --right;
+            }
+        }
+        return true;
+}
+```
+
+![image-20210417111539189](LeetCode刷塔攻略.assets/image-20210417111539189.png)
