@@ -38,42 +38,41 @@ bool detectCapitalUse(string word) {
 
 //125 验证回文串
  bool isPalindrome(string s) {
-     int i=0, j=s.size()-1;//左指针，右指针
-     bool res = true;
-     while(i<=j){
-
-         char x = s[i]; char y = s[j];
-
-         if(s[j]<=64||(s[j]>=91&&s[j]<=96)||s[j]>=123){
-             j--;
-             continue;
-         }
-         if(s[i]<=64||(s[i]>=91&&s[i]<=96)||s[i]>=123){
-             i++;
-             continue;
-         }
-
-         if(65<=s[i]&&s[i]<=90){//左大写
-             if(s[j]!=s[i]&&s[j]!=s[i]+32){
-                // cout<<s[j]<<"   "<<s[i]+32;                 
-                 res = false;
-                 break;
-                 }
-         }
-         if(97<=s[i]&&s[i]<=122){
-             if(s[j]!=s[i]&&s[j]!=s[i]-32){
-                 res = false;
-                 break;
-             }
-         }
-         if(i>=j)break;
-         i++;
-         j--;
-     }
-     return res;
+        int n = s.size();
+        int left = 0, right = n - 1;
+        while (left < right) {
+            while (left < right && !isalnum(s[left])) {
+                ++left;
+            }
+            while (left < right && !isalnum(s[right])) {
+                --right;
+            }
+            if (left < right) {
+                if (tolower(s[left]) != tolower(s[right])) {
+                    return false;
+                }
+                ++left;
+                --right;
+            }
+        }
+        return true;
 }
 
+//14 最长公共前缀
+  string longestCommonPrefix(vector<string>& strs) {
+     if(strs.size()==0)return "";
+     for(int x=0; x<strs[0].size(); x++){//由第一个字符开始
+         for(int y=1; y< strs.size(); y++){
+             if(strs[0][x]!=strs[y][x]||x == strs[y].size())
+             return strs[0].substr(0, 0 + x);
+         }
+     }
+     return strs[0];
+}
+
+
 int main(){
-    string str = "race a car";
-    bool res = isPalindrome(str);
+    vector<string> strs = {"flower","flow","flight"};
+    string sb = longestCommonPrefix(strs);
+    cout<<sb;
 }

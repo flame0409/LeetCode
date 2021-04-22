@@ -1084,3 +1084,29 @@ D21：
 ```
 
 ![image-20210417111539189](LeetCode刷塔攻略.assets/image-20210417111539189.png)
+
+#### 2.2.2 最长回文串：
+
+D22：
+
+![image-20210422104148991](LeetCode刷塔攻略.assets/image-20210422104148991.png)
+
+解题思路：
+
+每一个string的首字母都与str[0]比较，接下来比第二个，一直比到不相同，返回；
+
+```c++
+ string longestCommonPrefix(vector<string>& strs) {
+     if(strs.size()==0)return "";
+     for(int x=0; x<strs[0].size(); x++){//由第一个字符开始
+         for(int y=1; y< strs.size(); y++){
+             if(strs[0][x]!=strs[y][x]||x == strs[y].size())
+             return strs[0].substr(0, 0 + x);
+         }
+     }
+     return strs[0];
+}
+
+```
+
+![image-20210422104340079](LeetCode刷塔攻略.assets/image-20210422104340079.png)
