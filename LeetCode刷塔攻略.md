@@ -1085,7 +1085,7 @@ D21：
 
 ![image-20210417111539189](LeetCode刷塔攻略.assets/image-20210417111539189.png)
 
-#### 2.2.2 最长回文串：
+#### 2.2.2 最长回文串
 
 D22：
 
@@ -1110,3 +1110,37 @@ D22：
 ```
 
 ![image-20210422104340079](LeetCode刷塔攻略.assets/image-20210422104340079.png)
+
+#### 2.2.3 字符串中的单词数
+
+D23：
+
+![image-20210428112332984](LeetCode刷塔攻略.assets/image-20210428112332984.png)
+
+代码：
+
+```c++
+int countSegments(string s) {
+    int num = 0;
+    for(int x = 0; x < s.size() ; x++ ){
+        if((num == 0 || s[x-1] == ' ')&&s[x]!=' ')num++;
+    }
+    return num;
+}
+
+```
+
+```java
+ public int countSegments(String s) {
+    	int segmentCount = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if ((i == 0 || s.charAt(i-1) == ' ') && s.charAt(i) != ' ') {
+                segmentCount++;
+            }
+        }
+
+        return segmentCount;
+    }
+```
+
+![image-20210428113151746](LeetCode刷塔攻略.assets/image-20210428113151746.png)

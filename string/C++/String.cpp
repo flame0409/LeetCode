@@ -69,10 +69,19 @@ bool detectCapitalUse(string word) {
      }
      return strs[0];
 }
+//434 字符串单词数
+int countSegments(string s) {
+    int num = 0;
+    for(int x = 0; x < s.size() ; x++ ){
+        if((num == 0 || s[x-1] == ' ')&&s[x]!=' ')num++;
+    }
+    return num;
+}
 
 
 int main(){
     vector<string> strs = {"flower","flow","flight"};
-    string sb = longestCommonPrefix(strs);
-    cout<<sb;
+    string s = "Hello, my name is John";
+    int x = countSegments(s);
+    cout<<x;
 }
