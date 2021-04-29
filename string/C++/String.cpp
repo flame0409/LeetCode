@@ -78,10 +78,21 @@ int countSegments(string s) {
     return num;
 }
 
+//58 最后一个单词长度
+int lengthOfLastWord(string s) {
+    int len = 0;
+    for(int x = s.size()-1; x >= 0; x--){
+        if(s[x]!=' '){//第一个不是‘ ’的字符
+            len++;
+            if((s[x-1]&&s[x-1]==' ')||(x-1)<0)return len;
+        }
+    }
+    return len;
+}
 
 int main(){
     vector<string> strs = {"flower","flow","flight"};
-    string s = "Hello, my name is John";
-    int x = countSegments(s);
+    string s = "a";
+    int x = lengthOfLastWord(s);
     cout<<x;
 }

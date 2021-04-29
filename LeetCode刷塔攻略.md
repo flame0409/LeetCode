@@ -1144,3 +1144,40 @@ int countSegments(string s) {
 ```
 
 ![image-20210428113151746](LeetCode刷塔攻略.assets/image-20210428113151746.png)
+
+#### 2.2.4 最后一个单词长度
+
+D24：
+
+![image-20210429100741764](LeetCode刷塔攻略.assets/image-20210429100741764.png)
+
+代码：
+
+```c++
+int lengthOfLastWord(string s) {
+    int len = 0;
+    for(int x = s.size()-1; x >= 0; x--){
+        if(s[x]!=' '){//第一个不是‘ ’的字符
+            len++;
+            if(((x-1)<0)||s[x-1]==' ')return len;
+        }
+    }
+    return len;
+}
+```
+
+![image-20210429100850745](LeetCode刷塔攻略.assets/image-20210429100850745.png)
+
+```java
+public int lengthOfLastWord(String s) {
+    	int len = 0;
+    	s = s.trim();
+    	for(int x = s.length()-1; x>=0; x--) {
+    		len++;
+    		if(x-1<0||s.charAt(x-1)==' ')break;
+    	}
+    	return len;
+    }
+```
+
+![image-20210429102051928](LeetCode刷塔攻略.assets/image-20210429102051928.png)
