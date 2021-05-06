@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include <algorithm>
 
 using namespace std;
 
@@ -84,15 +85,72 @@ int lengthOfLastWord(string s) {
     for(int x = s.size()-1; x >= 0; x--){
         if(s[x]!=' '){//第一个不是‘ ’的字符
             len++;
-            if((s[x-1]&&s[x-1]==' ')||(x-1)<0)return len;
+            if(((x-1)<0)||s[x-1]==' ')return len;
         }
     }
     return len;
 }
 
+//344. 反转字符串
+void reverseString(string s, int i, int j) {
+    while(i<=j){
+        swap(s[i], s[j]);
+        i++;
+        j--;
+    }
+}
+//541.翻转字符串II
+string reverseStr(string s, int k) {
+    int len = s.size()/(2*k);//2k的次数
+    cout<<len;
+    int n = s.size()%(2*k);
+    int loc = 0;
+    for(int x=0; x<len; x++){
+        reverseString(s, loc, loc+k-1);
+        loc = loc+2*k;
+    }
+    if(s.size()%(2*k)<k){
+        reverseString(s, loc, s.size()-1);
+    }
+    if(s.size()%(2*k)<(2*k)&&s.size()%(2*k)>=k){
+        reverseString(s, loc, loc+k-1);
+    }
+    return s;
+}
+ string reverseStrII(string s, int k) {
+    int i = 0,n=s.size();
+    while (i < n) { // 指针没到字符串末尾进入循环
+        if (i + k > n) { // 指针后面不够k个就全部反转
+            reverse(s.begin()+i, s.end());
+        } else {
+            reverse(s.begin()+i, s.begin()+i+k);//reverse的第二个参数是指向要翻转范围的下一个
+        }
+        i += 2*k;
+    }
+    return s;
+}
+//翻转字符串中的单词
+string reverseWords(string s) {
+    int j=0;
+    for(int i=0; i<s.size();i++){
+        if(s[i]==' ')continue;
+        if(s[i]!=' '){
+            int j=0;
+            while(s[i+j]!=' '&&(i+j)<s.size()){
+                j++;
+            }
+           reverse(s.begin()+i, s.begin()+i+j);
+            i=j+i;
+        }
+    }
+    return s;
+}
+
 int main(){
-    vector<string> strs = {"flower","flow","flight"};
-    string s = "a";
-    int x = lengthOfLastWord(s);
-    cout<<x;
+    vector<char> strs = {'h','e','l','l','o'};
+    string s = "Let's take LeetCode contest";
+    // int x = lengthOfLastWord(s);
+    // cout<<x;
+    //reverseString(strs, 1, 4);
+    reverseWords(s);
 }

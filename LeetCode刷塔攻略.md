@@ -1085,6 +1085,8 @@ D21：
 
 ![image-20210417111539189](LeetCode刷塔攻略.assets/image-20210417111539189.png)
 
+### 2.2公共前缀
+
 #### 2.2.2 最长回文串
 
 D22：
@@ -1111,7 +1113,9 @@ D22：
 
 ![image-20210422104340079](LeetCode刷塔攻略.assets/image-20210422104340079.png)
 
-#### 2.2.3 字符串中的单词数
+### 2.3 单词
+
+#### 2.3.1 字符串中的单词数
 
 D23：
 
@@ -1145,7 +1149,7 @@ int countSegments(string s) {
 
 ![image-20210428113151746](LeetCode刷塔攻略.assets/image-20210428113151746.png)
 
-#### 2.2.4 最后一个单词长度
+#### 2.3.2 最后一个单词长度
 
 D24：
 
@@ -1181,3 +1185,56 @@ public int lengthOfLastWord(String s) {
 ```
 
 ![image-20210429102051928](LeetCode刷塔攻略.assets/image-20210429102051928.png)
+
+### 2.4 翻转字符串
+
+#### 2.4.1 翻转字符串II
+
+![image-20210505104024082](LeetCode刷塔攻略.assets/image-20210505104024082.png)
+
+代码：
+
+```c++
+string reverseStr(string s, int k) {
+        int i = 0,n=s.size();
+        while (i < n) { // 指针没到字符串末尾进入循环
+            if (i + k > n) { // 指针后面不够k个就全部反转
+                reverse(s.begin()+i, s.end());
+            } else {
+                reverse(s.begin()+i, s.begin()+i+k);//reverse的第二个参数是指向要翻转范围的下一个
+            }
+            i += 2*k;
+        }
+        return s;
+    }
+```
+
+![image-20210505104056646](LeetCode刷塔攻略.assets/image-20210505104056646.png)
+
+#### 2.4.2 反转字符串中的单词III
+
+D26:
+
+![image-20210506101825853](LeetCode刷塔攻略.assets/image-20210506101825853.png)
+
+```c++
+string reverseWords(string s) {
+    int j=0;
+    for(int i=0; i<s.size();i++){
+        if(s[i]==' ')continue;
+        if(s[i]!=' '){
+            int j=0;
+            while(s[i+j]!=' '&&(i+j)<s.size()){
+                j++;
+            }
+           reverse(s.begin()+i, s.begin()+i+j);
+            i=j+i;
+        }
+    }
+    return s;
+}
+
+```
+
+![image-20210506101859421](LeetCode刷塔攻略.assets/image-20210506101859421.png)
+
