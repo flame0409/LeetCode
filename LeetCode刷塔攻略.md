@@ -1238,3 +1238,73 @@ string reverseWords(string s) {
 
 ![image-20210506101859421](LeetCode刷塔攻略.assets/image-20210506101859421.png)
 
+#### 2.4.3 翻转字符串里的单词
+
+D27: 
+
+![image-20210507085303089](LeetCode刷塔攻略.assets/image-20210507085303089.png)
+
+解题思路1：
+
+1. 将s放入stringstream中
+2. 由ss依次取出单个string加入到结果ans前面，并加上一个空格
+3. 去除首空格
+
+```c++
+string reverseWords(string s) {
+    stringstream str;
+    string ans = "", temp;
+    str<<s;
+    while(str>>temp){
+        ans = " "+temp+ans;
+    }
+    if(ans!=""){
+        ans.erase(ans.begin());
+    }
+    return ans;
+}
+```
+
+解题思路2：
+
+1. 翻转全部字符串
+2. 翻转单词
+3. 去除多余空格
+
+```c++
+ string reverseWords(string s) {
+    //1. 先翻转整个字符串
+    //int i = 0, j = 0;
+    reverse(s.begin(),s.begin()+s.size());
+    //2. 翻转单词
+    for(int i=0; i<s.size();i++){
+        if(s[i]==' ')continue;
+        if(s[i]!=' '){
+            int j=0;
+            while(s[i+j]!=' '&&(i+j)<s.size()){
+                j++;
+            }
+           reverse(s.begin()+i, s.begin()+i+j);
+            i=j+i;
+        }
+    }
+    int j=0;
+    while(j<s.size()-1){
+        if(s[j]==' '){
+            if(s[j+1]==' '){
+                s.erase(s.begin()+j);
+                continue;
+            }
+        }
+        j++;
+    }
+    if(s[0]==' ')s.erase(s.begin());
+   if(s[s.size()-1]==' '){
+       cout<<"ok";s.erase(s.begin()+s.size()-1);
+    }
+    return s;
+}
+```
+
+![image-20210507094336492](LeetCode刷塔攻略.assets/image-20210507094336492.png)
+

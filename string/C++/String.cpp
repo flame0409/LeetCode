@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include<sstream>
 #include <algorithm>
 
 using namespace std;
@@ -145,12 +146,58 @@ string reverseWords(string s) {
     }
     return s;
 }
+//151 翻转字符串里的单词
+// string reverseWordss(string s) {
+//     stringstream str;
+//     string ans = "", temp;
+//     str<<s;
+//     while(str>>temp){
+//         ans = " "+temp+ans;
+//     }
+//     if(ans!=""){
+//         ans.erase(ans.begin());
+//     }
+//     return ans;
+// }
+string reverseWordII(string s){
+    //1. 先翻转整个字符串
+    //int i = 0, j = 0;
+    reverse(s.begin(),s.begin()+s.size());
+    //2. 翻转单词
+    for(int i=0; i<s.size();i++){
+        if(s[i]==' ')continue;
+        if(s[i]!=' '){
+            int j=0;
+            while(s[i+j]!=' '&&(i+j)<s.size()){
+                j++;
+            }
+           reverse(s.begin()+i, s.begin()+i+j);
+            i=j+i;
+        }
+    }
+    int j=0;
+    while(j<s.size()-1){
+        if(s[j]==' '){
+            if(s[j+1]==' '){
+                s.erase(s.begin()+j);
+                continue;
+            }
+        }
+        j++;
+    }
+    if(s[0]==' ')s.erase(s.begin());
+    if(s[s.size()-1]==' '){cout<<"ok";s.erase(s.begin()+s.size()-1);}
+    return s;
+}
+
+
+
 
 int main(){
     vector<char> strs = {'h','e','l','l','o'};
-    string s = "Let's take LeetCode contest";
+    string s = " hello world! ";
     // int x = lengthOfLastWord(s);
     // cout<<x;
     //reverseString(strs, 1, 4);
-    reverseWords(s);
+    cout<<reverseWordII(s);
 }
