@@ -1238,7 +1238,7 @@ string reverseWords(string s) {
 
 ![image-20210506101859421](LeetCode刷塔攻略.assets/image-20210506101859421.png)
 
-#### 2.4.3 翻转字符串里的单词
+#### 2.4.3 翻转字符串里的单词*
 
 D27: 
 
@@ -1307,4 +1307,30 @@ string reverseWords(string s) {
 ```
 
 ![image-20210507094336492](LeetCode刷塔攻略.assets/image-20210507094336492.png)
+
+### 2.5 字符统计
+
+#### 2.5.1 字符串中唯一一个字符
+
+D28：
+
+![image-20210508201317519](LeetCode刷塔攻略.assets/image-20210508201317519.png)
+
+主要学习unordered_map
+
+```c++
+int firstUniqChar(string s) {
+    map<char, int> m;
+    for(char a:s){
+        ++m[a];
+    }
+    for(int i=0;i<s.size();i++){
+        if(m[s[i]]==1)
+        return i;
+    }
+    return -1;
+}
+```
+
+![image-20210508201432837](LeetCode刷塔攻略.assets/image-20210508201432837.png)
 

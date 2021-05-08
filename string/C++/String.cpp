@@ -3,6 +3,7 @@
 #include<string>
 #include<sstream>
 #include <algorithm>
+#include<map>
 
 using namespace std;
 
@@ -190,14 +191,30 @@ string reverseWordII(string s){
     return s;
 }
 
+//387 字符串中的第一个唯一字符
+int firstUniqChar(string s) {
+    map<char, int> m;
+    for(int i=0; i<s.size(); i++){
+        cout<<m.count(s[i])<<' ';
+        if(m.count(s[i])==0){
+            m[s[i]]=1;
+        }
+        else
+            m[s[i]]++;
+    }
+    // for(auto iter = m.begin(); iter != m.end(); iter++){
+    //     if()
+    // }
+    return 0;
+}
 
 
 
 int main(){
     vector<char> strs = {'h','e','l','l','o'};
-    string s = " hello world! ";
+    string s = "helloworld!";
     // int x = lengthOfLastWord(s);
     // cout<<x;
     //reverseString(strs, 1, 4);
-    cout<<reverseWordII(s);
+    firstUniqChar(s);
 }
