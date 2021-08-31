@@ -1334,3 +1334,26 @@ int firstUniqChar(string s) {
 
 ![image-20210508201432837](LeetCode刷塔攻略.assets/image-20210508201432837.png)
 
+#### 2.5.2 找不同
+
+![image-20210514090906785](LeetCode刷塔攻略.assets/image-20210514090906785.png)
+
+思路：
+
+对S中所有数字进行加和，依次减去T中元素，剩下的就是多的那个数字。
+
+```c++
+char findTheDifference(string s, string t) {
+    int num = 0;
+    for(char ch:s){
+        num += ch;
+    }
+    for(char ch:t){
+        num -= ch;
+    }
+    return -(num);
+}
+
+```
+
+![image-20210514091121667](LeetCode刷塔攻略.assets/image-20210514091121667.png)

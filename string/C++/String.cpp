@@ -194,27 +194,46 @@ string reverseWordII(string s){
 //387 字符串中的第一个唯一字符
 int firstUniqChar(string s) {
     map<char, int> m;
-    for(int i=0; i<s.size(); i++){
-        cout<<m.count(s[i])<<' ';
-        if(m.count(s[i])==0){
-            m[s[i]]=1;
-        }
-        else
-            m[s[i]]++;
+    for(char a:s){
+        ++m[a];
     }
-    // for(auto iter = m.begin(); iter != m.end(); iter++){
-    //     if()
-    // }
-    return 0;
+    for(int i=0;i<s.size();i++){
+        if(m[s[i]]==1)
+        return i;
+    }
+    return -1;
 }
 
-
+//389 找不同
+char findTheDifference(string s, string t) {
+    int num = 0;
+    for(char ch:s){
+        num += ch;
+    }
+    for(char ch:t){
+        num -= ch;
+    }
+    return -(num);
+}
+string CTF_1(string v3, int v4){
+    int v0 = 0;
+    while(v0 < v3.length()){
+        v3[v0] = v3[v0] ^ v4;
+        v0++;
+    }
+    cout<<"flag是："<<v3;
+    return v3;
+}
 
 int main(){
     vector<char> strs = {'h','e','l','l','o'};
-    string s = "helloworld!";
+    string s = "abcd";
+    string t = "abcde";
     // int x = lengthOfLastWord(s);
     // cout<<x;
     //reverseString(strs, 1, 4);
-    firstUniqChar(s);
+    // char a = findTheDifference(s,t);
+    string v3 = "X<cP[?PHNB<P?aj";
+    int v4 = 15;
+    CTF_1(v3, v4);
 }
